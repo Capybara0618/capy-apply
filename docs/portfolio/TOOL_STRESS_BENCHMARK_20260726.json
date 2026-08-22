@@ -1,0 +1,202 @@
+{
+  "benchmark": {
+    "kind": "current_job_tool_stress_synthetic_chat",
+    "scenario_profile": "tool_stress",
+    "captured_at": "2026-07-26T11:07:50.475158+00:00",
+    "current_job_count": 50,
+    "scenario_count": 10,
+    "episode_count": 100,
+    "synthetic_message_count": 337,
+    "database": "capybot_apply_benchmark_grounded",
+    "chat_source": "controlled_synthetic",
+    "job_source": "frozen_live_boss_search",
+    "internship_title_verified": true,
+    "real_pattern_reference": {
+      "source_conversations": 41,
+      "valid_conversations": 40,
+      "source_messages": 267,
+      "no_hr_reply": 29,
+      "has_hr_reply": 11,
+      "generated_no_hr_reply": 1,
+      "generated_has_hr_reply": 49
+    }
+  },
+  "quality": {
+    "cases": 50,
+    "accepted": 50,
+    "stage_accuracy": 1.0,
+    "action_accuracy": 1.0,
+    "stage_action_accuracy": 1.0
+  },
+  "quality_by_scenario": {
+    "ambiguous_event": {
+      "cases": 6,
+      "accepted": 6,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "availability": {
+      "cases": 2,
+      "accepted": 2,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "employment_identity": {
+      "cases": 8,
+      "accepted": 8,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "interview_invite": {
+      "cases": 8,
+      "accepted": 8,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "job_condition_gap": {
+      "cases": 8,
+      "accepted": 8,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "material_sent": {
+      "cases": 3,
+      "accepted": 3,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "project_question": {
+      "cases": 8,
+      "accepted": 8,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "rejected": {
+      "cases": 1,
+      "accepted": 1,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "resume_request": {
+      "cases": 5,
+      "accepted": 5,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    },
+    "silent_manual_followup": {
+      "cases": 1,
+      "accepted": 1,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    }
+  },
+  "runtime": {
+    "initial": {
+      "runs": 50,
+      "llm_calls": 0,
+      "tool_calls": 0,
+      "external_tool_calls": 0,
+      "local_tool_calls": 0,
+      "tokens": 0,
+      "duration_ms": 0
+    },
+    "delta": {
+      "runs": 50,
+      "llm_calls": 115,
+      "tool_calls": 63,
+      "external_tool_calls": 32,
+      "local_tool_calls": 31,
+      "tokens": 405576,
+      "duration_ms": 1482197
+    }
+  },
+  "agent_tool_observations": {
+    "boss_fetch_job_detail": {
+      "calls": 24,
+      "successes": 24,
+      "novel_evidence": 24,
+      "used_evidence": 24,
+      "context_uses": 0,
+      "average_duration_ms": 7631.7
+    },
+    "job_read": {
+      "calls": 11,
+      "successes": 11,
+      "novel_evidence": 11,
+      "used_evidence": 11,
+      "context_uses": 0,
+      "average_duration_ms": 13.0
+    },
+    "memory_read": {
+      "calls": 8,
+      "successes": 8,
+      "novel_evidence": 14,
+      "used_evidence": 11,
+      "context_uses": 0,
+      "average_duration_ms": 12.8
+    },
+    "research_company": {
+      "calls": 8,
+      "successes": 8,
+      "novel_evidence": 28,
+      "used_evidence": 28,
+      "context_uses": 0,
+      "average_duration_ms": 6415.4
+    },
+    "skill_discover": {
+      "calls": 6,
+      "successes": 6,
+      "novel_evidence": 0,
+      "used_evidence": 0,
+      "context_uses": 6,
+      "average_duration_ms": 0.0
+    },
+    "skill_load": {
+      "calls": 6,
+      "successes": 6,
+      "novel_evidence": 0,
+      "used_evidence": 0,
+      "context_uses": 6,
+      "average_duration_ms": 0.0
+    }
+  },
+  "job_mcp": {
+    "cases": 0,
+    "tool_calls": 0,
+    "tool_successes": 0,
+    "accepted": 0,
+    "novel_evidence": 0,
+    "used_evidence": 0,
+    "duration_ms": 0
+  },
+  "tool_coverage": {
+    "stage_analysis_mcp_calls": 32,
+    "stage_analysis_boss_mcp_calls": 24,
+    "stage_analysis_company_mcp_calls": 8,
+    "stage_analysis_local_tool_calls": 31,
+    "explicit_job_research_mcp_calls": 0,
+    "policy": "由 LLM 根据信息缺口按需调用，不为展示而强制调用外部 MCP"
+  },
+  "scenario_distribution": {
+    "interview_invite": 8,
+    "project_question": 8,
+    "employment_identity": 8,
+    "job_condition_gap": 8,
+    "ambiguous_event": 6,
+    "resume_request": 5,
+    "material_sent": 3,
+    "availability": 2,
+    "rejected": 1,
+    "silent_manual_followup": 1
+  }
+}

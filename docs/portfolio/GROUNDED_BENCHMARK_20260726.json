@@ -1,0 +1,78 @@
+{
+  "benchmark": {
+    "kind": "current_job_grounded_synthetic_chat",
+    "captured_at": "2026-07-26T10:29:40.377843+00:00",
+    "current_job_count": 50,
+    "scenario_count": 9,
+    "episode_count": 100,
+    "synthetic_message_count": 334,
+    "database": "capybot_apply_benchmark_grounded",
+    "chat_source": "controlled_synthetic",
+    "job_source": "frozen_live_boss_search",
+    "internship_title_verified": true,
+    "real_pattern_reference": {
+      "source_conversations": 41,
+      "valid_conversations": 40,
+      "source_messages": 267,
+      "no_hr_reply": 29,
+      "has_hr_reply": 11,
+      "generated_no_hr_reply": 36,
+      "generated_has_hr_reply": 14
+    }
+  },
+  "quality": {
+    "cases": 50,
+    "accepted": 50,
+    "stage_accuracy": 1.0,
+    "action_accuracy": 1.0,
+    "stage_action_accuracy": 1.0
+  },
+  "runtime": {
+    "initial": {
+      "runs": 50,
+      "llm_calls": 0,
+      "tool_calls": 0,
+      "external_tool_calls": 0,
+      "local_tool_calls": 0,
+      "tokens": 0,
+      "duration_ms": 0
+    },
+    "delta": {
+      "runs": 50,
+      "llm_calls": 25,
+      "tool_calls": 17,
+      "external_tool_calls": 5,
+      "local_tool_calls": 12,
+      "tokens": 81994,
+      "duration_ms": 346624
+    }
+  },
+  "job_mcp": {
+    "cases": 10,
+    "tool_calls": 10,
+    "tool_successes": 10,
+    "accepted": 10,
+    "novel_evidence": 10,
+    "used_evidence": 10,
+    "duration_ms": 62765
+  },
+  "tool_coverage": {
+    "stage_analysis_mcp_calls": 5,
+    "stage_analysis_boss_mcp_calls": 4,
+    "stage_analysis_company_mcp_calls": 1,
+    "stage_analysis_local_tool_calls": 12,
+    "explicit_job_research_mcp_calls": 10,
+    "policy": "由 LLM 根据信息缺口按需调用，不为展示而强制调用外部 MCP"
+  },
+  "scenario_distribution": {
+    "silent_auto_followup": 26,
+    "silent_manual_followup": 10,
+    "resume_request": 5,
+    "material_sent": 2,
+    "interview_invite": 2,
+    "project_question": 2,
+    "availability": 1,
+    "rejected": 1,
+    "employment_identity": 1
+  }
+}

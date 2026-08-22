@@ -1,0 +1,278 @@
+{
+  "conversations": [
+    {
+      "conversation_id": "boss_mock_agent_001",
+      "id": "boss_mock_agent_001",
+      "boss_uid": "mock_hr_001",
+      "contact_name": "林女士",
+      "contact_role": "技术招聘",
+      "company": "星河智能科技",
+      "last_message_preview": "这个岗位主要做 Agent 工具调用和评估，你可以发一个项目链接吗？",
+      "last_message_at": "2026-05-23T10:10:00+08:00"
+    },
+    {
+      "conversation_id": "boss_mock_platform_002",
+      "id": "boss_mock_platform_002",
+      "boss_uid": "mock_hr_002",
+      "contact_name": "周先生",
+      "contact_role": "研发负责人",
+      "company": "启明云原生",
+      "last_message_preview": "好的，我先把你的简历推给负责人，预计明天给你反馈。",
+      "last_message_at": "2026-05-22T18:20:00+08:00"
+    },
+    {
+      "conversation_id": "boss_mock_interview_003",
+      "id": "boss_mock_interview_003",
+      "boss_uid": "mock_hr_003",
+      "contact_name": "王女士",
+      "contact_role": "HRBP",
+      "company": "数桥数据",
+      "last_message_preview": "可以约一个一面，明天下午 3 点方便吗？",
+      "last_message_at": "2026-05-23T09:40:00+08:00"
+    },
+    {
+      "conversation_id": "boss_mock_risk_004",
+      "id": "boss_mock_risk_004",
+      "boss_uid": "mock_hr_004",
+      "contact_name": "赵经理",
+      "contact_role": "招聘经理",
+      "company": "远航人才服务",
+      "last_message_preview": "入职前需要参加统一培训，培训费用可以分期。",
+      "last_message_at": "2026-05-21T14:00:00+08:00"
+    },
+    {
+      "conversation_id": "boss_mock_unknown_005",
+      "id": "boss_mock_unknown_005",
+      "boss_uid": "mock_hr_005",
+      "contact_name": "陈先生",
+      "contact_role": "业务负责人",
+      "company": "未公开公司",
+      "last_message_preview": "我们这边有个 AI 方向实习，你先简单介绍下自己。",
+      "last_message_at": "2026-05-20T11:30:00+08:00"
+    },
+    {
+      "conversation_id": "boss_mock_lowfit_006",
+      "id": "boss_mock_lowfit_006",
+      "boss_uid": "mock_hr_006",
+      "contact_name": "何女士",
+      "contact_role": "HR",
+      "company": "新零售运营中心",
+      "last_message_preview": "这个岗位偏用户运营，需要线下驻场。",
+      "last_message_at": "2026-05-19T16:50:00+08:00"
+    }
+  ],
+  "messages": {
+    "mock_hr_001": [
+      {
+        "mid": "mock_001_001",
+        "received": true,
+        "time": "2026-05-23T09:55:00+08:00",
+        "from": { "uid": "mock_hr_001", "name": "林女士" },
+        "body": {
+          "type": 8,
+          "text": "岗位卡片",
+          "jobDesc": {
+            "jobId": "agent-intern-001",
+            "url": "bosszp://bosszhipin.app/openwith?type=jobview&jid=agent-intern-001&securityId=mock-security-agent-001",
+            "title": "AI Agent 开发实习生",
+            "company": "星河智能科技",
+            "salary": "250-350 元/天",
+            "city": "上海",
+            "experience": "在校/应届",
+            "education": "本科",
+            "boss": { "uid": "mock_hr_001", "name": "林女士" }
+          }
+        }
+      },
+      {
+        "mid": "mock_001_002",
+        "received": true,
+        "time": "2026-05-23T10:02:00+08:00",
+        "from": { "uid": "mock_hr_001", "name": "林女士" },
+        "body": {
+          "text": "这个岗位主要做 Agent 工具调用、MCP 接入和评估 harness。我们比较看重项目落地能力。"
+        }
+      },
+      {
+        "mid": "mock_001_003",
+        "received": true,
+        "time": "2026-05-23T10:10:00+08:00",
+        "from": { "uid": "mock_hr_001", "name": "林女士" },
+        "body": {
+          "text": "你可以发一个简历和 GitHub 项目链接吗？最好能看到 agent loop、工具调用和 eval 的部分。"
+        }
+      }
+    ],
+    "mock_hr_002": [
+      {
+        "mid": "mock_002_001",
+        "received": true,
+        "time": "2026-05-22T17:20:00+08:00",
+        "from": { "uid": "mock_hr_002", "name": "周先生" },
+        "body": {
+          "type": 8,
+          "text": "岗位卡片",
+          "jobDesc": {
+            "jobId": "backend-intern-002",
+            "title": "后端开发实习生",
+            "company": "启明云原生",
+            "salary": "200-300 元/天",
+            "city": "杭州",
+            "experience": "在校/应届",
+            "education": "本科",
+            "boss": { "uid": "mock_hr_002", "name": "周先生" }
+          }
+        }
+      },
+      {
+        "mid": "mock_002_002",
+        "received": true,
+        "time": "2026-05-22T17:42:00+08:00",
+        "from": { "uid": "mock_hr_002", "name": "周先生" },
+        "body": {
+          "text": "我们这边主要是 Python 后端和内部自动化平台，部分工作会接 LLM 工具链。"
+        }
+      },
+      {
+        "mid": "mock_002_003",
+        "received": false,
+        "time": "2026-05-22T18:05:00+08:00",
+        "from": { "uid": "me", "name": "我" },
+        "body": {
+          "text": "好的，我把简历和项目链接发您，这个方向我比较感兴趣。"
+        }
+      },
+      {
+        "mid": "mock_002_004",
+        "received": true,
+        "time": "2026-05-22T18:20:00+08:00",
+        "from": { "uid": "mock_hr_002", "name": "周先生" },
+        "body": {
+          "text": "收到，我先推给负责人，预计明天给你反馈。"
+        }
+      }
+    ],
+    "mock_hr_003": [
+      {
+        "mid": "mock_003_001",
+        "received": true,
+        "time": "2026-05-23T09:20:00+08:00",
+        "from": { "uid": "mock_hr_003", "name": "王女士" },
+        "body": {
+          "type": 8,
+          "text": "岗位卡片",
+          "jobDesc": {
+            "jobId": "data-agent-003",
+            "title": "数据平台 AI 工具实习生",
+            "company": "数桥数据",
+            "salary": "220-320 元/天",
+            "city": "北京",
+            "experience": "在校/应届",
+            "education": "本科",
+            "boss": { "uid": "mock_hr_003", "name": "王女士" }
+          }
+        }
+      },
+      {
+        "mid": "mock_003_002",
+        "received": true,
+        "time": "2026-05-23T09:30:00+08:00",
+        "from": { "uid": "mock_hr_003", "name": "王女士" },
+        "body": {
+          "text": "看了你的项目，和我们内部数据助手方向比较接近。"
+        }
+      },
+      {
+        "mid": "mock_003_003",
+        "received": true,
+        "time": "2026-05-23T09:40:00+08:00",
+        "from": { "uid": "mock_hr_003", "name": "王女士" },
+        "body": {
+          "text": "可以约一个一面，明天下午 3 点方便吗？"
+        }
+      }
+    ],
+    "mock_hr_004": [
+      {
+        "mid": "mock_004_001",
+        "received": true,
+        "time": "2026-05-21T13:30:00+08:00",
+        "from": { "uid": "mock_hr_004", "name": "赵经理" },
+        "body": {
+          "type": 8,
+          "text": "岗位卡片",
+          "jobDesc": {
+            "jobId": "java-training-004",
+            "title": "Java 开发实习生",
+            "company": "远航人才服务",
+            "salary": "0-100 元/天",
+            "city": "深圳",
+            "experience": "不限",
+            "education": "大专",
+            "boss": { "uid": "mock_hr_004", "name": "赵经理" }
+          }
+        }
+      },
+      {
+        "mid": "mock_004_002",
+        "received": true,
+        "time": "2026-05-21T13:45:00+08:00",
+        "from": { "uid": "mock_hr_004", "name": "赵经理" },
+        "body": {
+          "text": "入职前需要参加统一培训，培训费用可以分期，之后推荐到合作企业。"
+        }
+      },
+      {
+        "mid": "mock_004_003",
+        "received": true,
+        "time": "2026-05-21T14:00:00+08:00",
+        "from": { "uid": "mock_hr_004", "name": "赵经理" },
+        "body": {
+          "text": "如果你今天能确定，我可以帮你预留名额。"
+        }
+      }
+    ],
+    "mock_hr_005": [
+      {
+        "mid": "mock_005_001",
+        "received": true,
+        "time": "2026-05-20T11:30:00+08:00",
+        "from": { "uid": "mock_hr_005", "name": "陈先生" },
+        "body": {
+          "text": "我们这边有个 AI 方向实习，还没挂岗位卡。你先简单介绍下自己和最近做的项目吧。"
+        }
+      }
+    ],
+    "mock_hr_006": [
+      {
+        "mid": "mock_006_001",
+        "received": true,
+        "time": "2026-05-19T16:30:00+08:00",
+        "from": { "uid": "mock_hr_006", "name": "何女士" },
+        "body": {
+          "type": 8,
+          "text": "岗位卡片",
+          "jobDesc": {
+            "jobId": "ops-intern-006",
+            "title": "用户运营实习生",
+            "company": "新零售运营中心",
+            "salary": "120-180 元/天",
+            "city": "广州",
+            "experience": "不限",
+            "education": "本科",
+            "boss": { "uid": "mock_hr_006", "name": "何女士" }
+          }
+        }
+      },
+      {
+        "mid": "mock_006_002",
+        "received": true,
+        "time": "2026-05-19T16:50:00+08:00",
+        "from": { "uid": "mock_hr_006", "name": "何女士" },
+        "body": {
+          "text": "这个岗位偏用户运营，需要线下驻场，主要做活动执行和社群维护。"
+        }
+      }
+    ]
+  }
+}

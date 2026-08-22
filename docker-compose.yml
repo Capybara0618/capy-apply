@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: capybot-apply-postgres
+    environment:
+      POSTGRES_USER: capybot
+      POSTGRES_PASSWORD: capybot
+      POSTGRES_DB: capybot_apply
+    ports:
+      - "15432:5432"
+    volumes:
+      - capybot_apply_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U capybot -d capybot_apply"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: capybot-apply-redis
+    ports:
+      - "16379:6379"
+    volumes:
+      - capybot_apply_redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  capybot-worker:
+    profiles: ["worker"]
+    build: .
+    environment:
+      CAPYBOT_APPLY_DATABASE_URL: postgresql+psycopg://capybot:capybot@postgres:5432/capybot_apply
+      CAPYBOT_APPLY_REDIS_URL: redis://redis:6379/0
+    command: ["capybot", "apply", "worker"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  capybot_apply_pg:
+  capybot_apply_redis:

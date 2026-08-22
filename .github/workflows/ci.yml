@@ -1,0 +1,115 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: capybot
+          POSTGRES_PASSWORD: capybot
+          POSTGRES_DB: capybot_apply_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U capybot -d capybot_apply_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 20
+    env:
+      CAPYBOT_APPLY_DATABASE_URL: postgresql+psycopg://capybot:capybot@127.0.0.1:5432/capybot_apply_test
+      CAPYBOT_APPLY_TEST_DATABASE_URL: postgresql+psycopg://capybot:capybot@127.0.0.1:5432/capybot_apply_test
+      CAPYBOT_APPLY_REDIS_URL: redis://127.0.0.1:6379/15
+      CAPYBOT_APPLY_DISABLE_LLM: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: astral-sh/setup-uv@v9.0.0
+      - name: Install dependencies
+        run: uv sync --frozen --extra dev
+      - name: Upgrade PostgreSQL schema
+        run: uv run capybot db upgrade
+      - name: Lint
+        run: uv run ruff check capybot tests scripts hatch_build.py
+      - name: Test
+        run: uv run pytest -q
+      - name: Run Agent contract eval
+        run: uv run capybot apply eval
+
+  webui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: webui
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: webui/package-lock.json
+      - run: npm ci
+      - run: npm test -- --run
+      - run: npm run build
+      - run: npm audit --omit=dev
+
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [backend, webui]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: webui/package-lock.json
+      - uses: astral-sh/setup-uv@v9.0.0
+      - run: uv sync --frozen
+      - name: Build sdist and wheel
+        env:
+          CAPYBOT_FORCE_WEBUI_BUILD: "1"
+        run: uv build --out-dir dist
+      - name: Audit wheel contents
+        shell: bash
+        run: |
+          wheel="$(find dist -name '*.whl' -print -quit)"
+          entries="$(python -m zipfile -l "$wheel")"
+          if grep -E '(^|/)(nanobot|agent|providers|channels|session|cron|heartbeat)/|tool_loop' <<<"$entries"; then
+            echo "Forbidden legacy runtime found in wheel"
+            exit 1
+          fi

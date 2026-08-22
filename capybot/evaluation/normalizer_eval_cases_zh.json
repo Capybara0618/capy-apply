@@ -1,0 +1,144 @@
+[
+  {
+    "name": "HR 普通文本",
+    "raw": {"mid": "n01", "status": 2, "body": {"text": "方便发一份简历吗？"}},
+    "expected_type": "text",
+    "expected_from_me": false
+  },
+  {
+    "name": "候选人普通文本",
+    "raw": {"mid": "n02", "status": 1, "body": {"text": "好的，我稍后发您。"}},
+    "expected_type": "text",
+    "expected_from_me": true
+  },
+  {
+    "name": "候选人简历图片",
+    "raw": {"mid": "n03", "status": 1, "body": {"type": 3, "image": {"originImage": {"url": "https://example.invalid/resume.jpg"}}}},
+    "expected_type": "image",
+    "expected_from_me": true
+  },
+  {
+    "name": "候选人 PDF 简历",
+    "raw": {"mid": "n04", "status": 1, "body": {"type": 5, "file": {"fileName": "resume.pdf"}}},
+    "expected_type": "file",
+    "expected_from_me": true
+  },
+  {
+    "name": "BOSS resume 附件结构",
+    "raw": {"mid": "n05", "status": 1, "body": {"resume": {"name": "在线简历"}}},
+    "expected_type": "file",
+    "expected_from_me": true
+  },
+  {
+    "name": "岗位卡",
+    "raw": {"mid": "n06", "status": 2, "body": {"type": 8, "jobDesc": {"jobId": "j1", "title": "Agent 开发实习生"}}},
+    "expected_type": "job_card",
+    "expected_from_me": false
+  },
+  {
+    "name": "竞争力平台卡",
+    "raw": {"mid": "n07", "status": 2, "body": {"type": 16, "articles": [{"title": "职位竞争力分析"}]}},
+    "expected_type": "platform_card",
+    "expected_from_me": false
+  },
+  {
+    "name": "职位推荐平台卡",
+    "raw": {"mid": "n08", "status": 2, "body": {"article": {"title": "相似职位推荐"}}},
+    "expected_type": "platform_card",
+    "expected_from_me": false
+  },
+  {
+    "name": "VIP 自动追问",
+    "raw": {"mid": "n09", "status": 1, "body": {"text": "VIP求职助手帮你追聊"}},
+    "expected_type": "auto_followup",
+    "expected_from_me": true
+  },
+  {
+    "name": "自动追问正文",
+    "raw": {"mid": "n10", "status": 1, "body": {"text": "我对这个岗位很感兴趣，期待您的回复~"}},
+    "expected_type": "auto_followup",
+    "expected_from_me": true
+  },
+  {
+    "name": "明确系统消息",
+    "raw": {"mid": "n11", "status": 2, "body": {"text": "系统消息"}},
+    "expected_type": "system",
+    "expected_from_me": false
+  },
+  {
+    "name": "平台安全提示",
+    "raw": {"mid": "n12", "status": 2, "body": {"text": "平台提醒：请勿发送身份证信息"}},
+    "expected_type": "system",
+    "expected_from_me": false
+  },
+  {
+    "name": "未知结构不兜底 system",
+    "raw": {"mid": "n13", "status": 2, "body": {"type": 99, "payload": {"x": 1}}},
+    "expected_type": "unknown",
+    "expected_from_me": false
+  },
+  {
+    "name": "无 body 不兜底 system",
+    "raw": {"mid": "n14", "status": 2},
+    "expected_type": "unknown",
+    "expected_from_me": false
+  },
+  {
+    "name": "from_me 显式优先",
+    "raw": {"mid": "n15", "from_me": true, "status": 2, "body": {"text": "这是我发送的消息"}},
+    "expected_type": "text",
+    "expected_from_me": true
+  },
+  {
+    "name": "received 兼容推断 HR",
+    "raw": {"mid": "n16", "received": true, "body": {"text": "下午可以电话沟通吗？"}},
+    "expected_type": "text",
+    "expected_from_me": false
+  },
+  {
+    "name": "received 兼容推断候选人",
+    "raw": {"mid": "n17", "received": false, "body": {"text": "可以的，谢谢。"}},
+    "expected_type": "text",
+    "expected_from_me": true
+  },
+  {
+    "name": "自荐文本弱方向信号",
+    "raw": {"mid": "n18", "body": {"text": "您好，看到贵司在招聘 Agent 实习生，我目前可连续实习六个月。"}},
+    "expected_type": "text",
+    "expected_from_me": true
+  },
+  {
+    "name": "真实 history status=2 候选人短回复",
+    "raw": {"mid": "n19", "status": 2, "received": true, "body": {"text": "可以接受"}, "from": {"uid": "candidate-1", "name": "候选人"}},
+    "identity_hints": {"candidate_uid": "candidate-1", "recruiter_uid": "boss-1"},
+    "expected_type": "text",
+    "expected_from_me": true
+  },
+  {
+    "name": "HR 附件简历请求弹窗",
+    "raw": {"mid": "n20", "bizType": 13, "status": 2, "received": true, "body": {"type": 7, "dialog": {"text": "我想要一份您的附件简历，您是否同意"}}, "from": {"uid": "boss-1", "name": "王女士"}},
+    "identity_hints": {"candidate_uid": "candidate-1", "recruiter_uid": "boss-1"},
+    "expected_type": "text",
+    "expected_from_me": false
+  },
+  {
+    "name": "候选人附件简历发送动作",
+    "raw": {"mid": "n21", "status": 2, "received": true, "body": {"hyperLink": {"text": "您的附件简历 实习简历 已发送给Boss点击查看附件"}}, "from": {"uid": "boss-1", "name": "王女士"}},
+    "identity_hints": {"candidate_uid": "candidate-1", "candidate_name": "候选人", "recruiter_uid": "boss-1"},
+    "expected_type": "file",
+    "expected_from_me": true
+  },
+  {
+    "name": "附件简历已读平台回执",
+    "raw": {"mid": "n22", "bizType": 21050035, "status": 2, "received": true, "body": {"templateId": 3, "text": "对方已查看了您的附件简历"}, "from": {"uid": "boss-1", "name": "王女士"}},
+    "identity_hints": {"candidate_uid": "candidate-1", "recruiter_uid": "boss-1"},
+    "expected_type": "system",
+    "expected_from_me": false
+  },
+  {
+    "name": "平台修改打招呼语提示",
+    "raw": {"mid": "n23", "received": true, "body": {"dialog": {"text": "点击修改打招呼语  去修改"}}},
+    "expected_type": "platform_card",
+    "expected_from_me": false
+  }
+]

@@ -1,0 +1,91 @@
+{
+  "benchmark": {
+    "kind": "chronological_real_l1_tracking",
+    "database": "capybot_apply_benchmark_dynamic",
+    "source_account_selected_explicitly": true,
+    "conversation_count": 40,
+    "episode_count": 57,
+    "reference_kind": "llm_double_annotated_adjudicated_reference",
+    "external_mcp_enabled": false,
+    "grouping": "consecutive_same_speaker_turns",
+    "agent_input": "new_turn+previous_projection+on_demand_memory",
+    "baseline_input": "all_history+all_job_cards+all_skills_every_turn"
+  },
+  "source_snapshot": {
+    "apply_accounts": 1,
+    "boss_conversations": 41,
+    "contacts": 41,
+    "boss_messages": 267,
+    "boss_job_cards": 40,
+    "candidate_profile": 1,
+    "job_preferences": 1
+  },
+  "agent": {
+    "runs": 57,
+    "accepted": 57,
+    "llm_calls": 42,
+    "zero_llm_runs": 40,
+    "tool_calls": 11,
+    "final_repairs": 15,
+    "tokens": {
+      "prompt": 100157,
+      "completion": 4760,
+      "total": 104917
+    },
+    "duration_ms": {
+      "total": 363549,
+      "average": 6378,
+      "p95": 24689
+    },
+    "final_quality": {
+      "cases": 40,
+      "stage_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "stage_action_accuracy": 1.0
+    }
+  },
+  "baseline": {
+    "runs": 57,
+    "accepted": 46,
+    "llm_calls": 105,
+    "zero_llm_runs": 0,
+    "tool_calls": 0,
+    "final_repairs": 48,
+    "tokens": {
+      "prompt": 289691,
+      "completion": 19339,
+      "total": 309030
+    },
+    "duration_ms": {
+      "total": 992412,
+      "average": 17411,
+      "p95": 25267
+    },
+    "final_quality": {
+      "cases": 40,
+      "stage_accuracy": 0.7,
+      "action_accuracy": 0.7,
+      "stage_action_accuracy": 0.625
+    }
+  },
+  "comparison": {
+    "token_reduction": 0.6605,
+    "llm_call_reduction": 0.6,
+    "model_duration_reduction": 0.6337,
+    "note": "质量仅在每个会话最终时间点与双标注裁决参考集比较。"
+  },
+  "tool_utility": {
+    "calls": 11,
+    "requested_calls": 17,
+    "duplicate_prevented": 6,
+    "evidence_used_calls": 2,
+    "empty_calls": 0,
+    "novel_evidence": 13,
+    "used_evidence": 2,
+    "by_tool": {
+      "job_read": 1,
+      "memory_read": 10
+    }
+  },
+  "failures": []
+}
